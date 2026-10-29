@@ -1,0 +1,175 @@
+
+{% extends "inventory/base.html" %}
+
+{% block title %}Home | InventoryPortal{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-glow"></div>
+
+    <div class="hero-container">
+        <div class="hero-copy">
+            <div class="eyebrow eyebrow-dark">
+                <span class="sparkle">✦</span>
+                COMPUTER SHOP MANAGEMENT
+            </div>
+
+            <p class="hero-kicker">A smarter way to manage your tech.</p>
+
+            <h1>Welcome to<br>Inventory<span class="hero-highlight">Portal.</span></h1>
+
+            <p class="hero-description">
+                Manage and explore our sample computer products in one place.
+                Find the essentials for your next great idea.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#products" class="button button-primary">
+                    Explore Products <span class="button-arrow">→</span>
+                </a>
+                <a href="{% url 'about' %}" class="text-link">
+                    Learn about us ↗
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <strong>{{ featured_count|stringformat:"02d" }}</strong>
+                    <span>Featured products</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <strong>{{ total_stock }}</strong>
+                    <span>Sample items in stock</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <strong>100%</strong>
+                    <span>Easy to explore</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-image-wrap">
+                <img
+                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1400&q=90"
+                    alt="Laptop on a desk"
+                    class="hero-image"
+                >
+            </div>
+
+            <div class="floating-card floating-top">
+                <span class="floating-icon">✦</span>
+                <span>
+                    <strong>Tech essentials</strong>
+                    <small>For your everyday workspace</small>
+                </span>
+            </div>
+
+            <div class="floating-card floating-bottom">
+                <span class="status-dot"></span>
+                <span>
+                    <strong>Inventory overview</strong>
+                    <small>Explore our sample products</small>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="benefits-section">
+    <div class="benefits-grid">
+        <article class="benefit">
+            <div class="benefit-icon">⌘</div>
+            <h3>Computer essentials</h3>
+            <p>Discover everyday technology for school, work, and home.</p>
+        </article>
+
+        <article class="benefit">
+            <div class="benefit-icon">₱</div>
+            <h3>Transparent pricing</h3>
+            <p>Browse sample product prices with clear information.</p>
+        </article>
+
+        <article class="benefit">
+            <div class="benefit-icon">▦</div>
+            <h3>Inventory information</h3>
+            <p>Check sample stock levels and product availability.</p>
+        </article>
+    </div>
+</section>
+
+<section class="products-section" id="products">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow eyebrow-light">THE COLLECTION</span>
+            <h2>Our computer <span class="blue-text">products.</span></h2>
+            <p>Choose a product to explore its price, stock level, and details.</p>
+        </div>
+
+        <div class="product-count">
+            <strong>{{ featured_count|stringformat:"02d" }}</strong>
+            <span>products to<br>explore</span>
+        </div>
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <article class="product-card">
+            <a href="{% url 'product_detail' product.slug %}" class="product-image-link">
+                <div class="product-image-wrap">
+                    <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
+                    <span class="category-badge">{{ product.category }}</span>
+                </div>
+            </a>
+
+            <div class="product-card-body">
+                <div class="product-meta">
+                    <span class="stock-label">
+                        <span class="status-dot"></span>
+                        In stock: {{ product.stock }}
+                    </span>
+                    <span class="sku">{{ product.sku }}</span>
+                </div>
+
+                <h3>
+                    <a href="{% url 'product_detail' product.slug %}">
+                        {{ product.name }}
+                    </a>
+                </h3>
+
+                <p class="product-description">{{ product.description }}</p>
+
+                <div class="product-card-bottom">
+                    <div class="price-block">
+                        <span class="price-caption">OUR PRICE</span>
+                        <strong>₱{{ product.price }}</strong>
+                    </div>
+
+                    <a href="{% url 'product_detail' product.slug %}" class="details-button">
+                        View details <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty-state">
+            <h3>No products available</h3>
+            <p>Please check again later.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="collection-banner">
+        <div class="collection-icon">✧</div>
+        <div class="collection-copy">
+            <strong>Building your perfect setup?</strong>
+            <p>Explore our sample inventory and find the essentials for your workspace.</p>
+        </div>
+        <a href="{% url 'about' %}" class="collection-link">About InventoryPortal →</a>
+    </div>
+</section>
+
+{% endblock %}

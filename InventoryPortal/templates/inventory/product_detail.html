@@ -1,0 +1,53 @@
+
+{% extends "inventory/base.html" %}
+
+{% block title %}{{ product.name }} | InventoryPortal{% endblock %}
+
+{% block content %}
+
+<section class="detail-section">
+    <div class="breadcrumb">
+        <a href="{% url 'home' %}">Home</a>
+        <span>/</span>
+        <a href="{% url 'home' %}#products">Products</a>
+        <span>/</span>
+        <span>{{ product.name }}</span>
+    </div>
+
+    <div class="detail-card">
+        <div class="detail-image-panel">
+            <span class="category-badge">{{ product.category }}</span>
+            <img src="{{ product.image }}" alt="{{ product.name }}" class="detail-image">
+        </div>
+
+        <div class="detail-info">
+            <span class="eyebrow eyebrow-light">PRODUCT INFORMATION</span>
+            <span class="sku detail-sku">{{ product.sku }}</span>
+
+            <h1>{{ product.name }}</h1>
+
+            <p class="detail-description">{{ product.description }}</p>
+
+            <div class="detail-price">
+                <span>OUR PRICE</span>
+                <strong>₱{{ product.price }}</strong>
+            </div>
+
+            <div class="detail-stock">
+                <span class="status-dot"></span>
+                <strong>{{ product.stock }} items in stock</strong>
+            </div>
+
+            <div class="detail-note">
+                <strong>Sample inventory item</strong>
+                <p>This is a demonstration product for the InventoryPortal educational project.</p>
+            </div>
+
+            <a href="{% url 'home' %}#products" class="button button-primary">
+                ← Back to products
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

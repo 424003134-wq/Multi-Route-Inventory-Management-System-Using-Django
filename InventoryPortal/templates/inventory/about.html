@@ -1,0 +1,81 @@
+
+{% extends "inventory/base.html" %}
+
+{% block title %}About | InventoryPortal{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+    <div class="about-hero-inner">
+        <div class="eyebrow eyebrow-dark">
+            <span class="sparkle">✦</span>
+            ABOUT THE SYSTEM
+        </div>
+
+        <h1>Technology meets<br><span class="hero-highlight">simplicity.</span></h1>
+
+        <p>
+            InventoryPortal is an educational computer shop inventory website
+            built with Django. It provides a simple way to explore products,
+            prices, and sample stock information.
+        </p>
+
+        <a href="{% url 'home' %}#products" class="button button-primary">
+            Explore products <span class="button-arrow">→</span>
+        </a>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="about-intro">
+        <span class="eyebrow eyebrow-light">OUR PROJECT</span>
+        <h2>About <span class="blue-text">InventoryPortal.</span></h2>
+        <p>
+            This project demonstrates how a Django website can organize
+            computer products and present inventory information through
+            reusable templates and dynamic URLs.
+        </p>
+    </div>
+
+    <div class="about-feature-grid">
+        <article class="about-feature">
+            <div class="benefit-icon">⌘</div>
+            <h3>Product catalog</h3>
+            <p>View computer products and accessories in a clean, organized layout.</p>
+        </article>
+
+        <article class="about-feature">
+            <div class="benefit-icon">₱</div>
+            <h3>Pricing details</h3>
+            <p>See the sample price of each product without searching through separate pages.</p>
+        </article>
+
+        <article class="about-feature">
+            <div class="benefit-icon">▦</div>
+            <h3>Stock overview</h3>
+            <p>Review the sample quantity available for each listed product.</p>
+        </article>
+    </div>
+
+    <div class="learning-panel">
+        <div>
+            <span class="eyebrow eyebrow-light">WHAT THIS PROJECT DEMONSTRATES</span>
+            <h2>Learning objectives</h2>
+            <p>Core Django concepts used in this website.</p>
+        </div>
+
+        <ul class="learning-list">
+            <li><span>✓</span> Configure URL patterns using <code>urls.py</code>.</li>
+            <li><span>✓</span> Create functional views using <code>views.py</code>.</li>
+            <li><span>✓</span> Display product information using Django templates.</li>
+            <li><span>✓</span> Use dynamic URL parameters for product detail pages.</li>
+            <li><span>✓</span> Handle unknown routes with a 404 response.</li>
+        </ul>
+    </div>
+
+    <div class="about-back">
+        <a href="{% url 'home' %}" class="text-link-dark">← Back to Home</a>
+    </div>
+</section>
+
+{% endblock %}
